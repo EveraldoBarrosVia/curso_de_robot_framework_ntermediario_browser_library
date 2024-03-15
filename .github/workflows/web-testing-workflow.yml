@@ -3,7 +3,30 @@ run-name: On push - WEB Tests Run
 on: [push]
 
 jobs:
-  test:
+  web-tests:
     runs-on: ubuntu-20.04
     steps:
-      - run: echo "Olá mundo!"
+      - name: chechout
+        uses: actions/checkout@v3
+
+      - name: Install Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+        
+      - name: Install Node.js 19.1
+        uses: actions/checkout@v3
+        with:
+          node-version: '19.1'
+
+      - name: Install requeriments
+        run:  |
+          python -m pip Install upgrade pip
+          pip Install -u -r requeriments.txt
+          sudo npm Install @playright/test
+          sudo npx playright Install-deps
+          rfbrowser init
+
+      - name: Run RF WEB Tests
+      run:  |
+      robot -d ./results -v HEADLESS: true -v BROWSER: chromium tests
