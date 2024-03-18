@@ -1,3 +1,9 @@
 robotframework
 robotframework-browser
 robotframework-faker
+robotframework-assertion-engine
+robotframework-jsonlibrary
+robotframework-pythonlibcore
+robotframework-requests
+robotframework-seleniumlibrary
+selenium
